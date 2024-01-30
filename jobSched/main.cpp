@@ -38,5 +38,17 @@ int main()
     Solution solver;
     assert(solver.jobScheduling(startTime,endTime,profit)==result);
     
+    startTime = {1,2,3,4,6};
+    endTime   = {3,5,10,6,9};
+    profit    = {20,20,100,70,60};
+    result    = 150;
+    assert(solver.jobScheduling(startTime,endTime,profit)==result);
+
+    startTime = {1,1,1};
+    endTime   = {2,3,4};
+    profit    = {5,6,4};
+    result    = 6;
+    assert(solver.jobScheduling(startTime,endTime,profit)==result);
+
     return 0;
 }
