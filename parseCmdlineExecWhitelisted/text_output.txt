@@ -1,0 +1,106 @@
+cmdsWhitelist="ls,echo,mkdir" build/fsmParser  'ls -laabb; ls; echo `rm`;mkdir a'
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [ls -laabb; ls; echo `rm`;mkdir a
+	 matched:ls captured:ls
+ls  in path: /usr/bin/ls
+try:sseq:^\s*([;\|])] [ -laabb; ls; echo `rm`;mkdir a
+try:e_group:^\s*("|'|`)] [ -laabb; ls; echo `rm`;mkdir a
+try:s_group:^\s*("|'|`)] [ -laabb; ls; echo `rm`;mkdir a
+try:args:^\s*([^\s;]+)] [ -laabb; ls; echo `rm`;mkdir a
+	 matched: -laabb captured:-laabb
+try:e_group:^\s*("|'|`)] [; ls; echo `rm`;mkdir a
+try:s_group:^\s*("|'|`)] [; ls; echo `rm`;mkdir a
+try:args:^\s*([^\s;]+)] [; ls; echo `rm`;mkdir a
+try:sseq:^\s*([;\|])] [; ls; echo `rm`;mkdir a
+	 matched:; captured:;
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [ ls; echo `rm`;mkdir a
+	 matched: ls captured:ls
+ls  in path: /usr/bin/ls
+try:sseq:^\s*([;\|])] [; echo `rm`;mkdir a
+	 matched:; captured:;
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [ echo `rm`;mkdir a
+	 matched: echo captured:echo
+echo  in path: /usr/bin/echo
+try:sseq:^\s*([;\|])] [ `rm`;mkdir a
+try:e_group:^\s*("|'|`)] [ `rm`;mkdir a
+	 matched: ` captured:`
+try:s_group:^\s*("|'|`)] [ `rm`;mkdir a
+	 matched: ` captured:`
+try default:start:] [rm`;mkdir a
+	 matched: captured:
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [rm`;mkdir a
+	 matched:rm captured:rm
+rm  in path: /usr/bin/rm
+try:sseq:^\s*([;\|])] [`;mkdir a
+try:e_group:^\s*("|'|`)] [`;mkdir a
+	 matched:` captured:`
+try default:start:] [;mkdir a
+	 matched: captured:
+try:end:^\s*($)] [;mkdir a
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [;mkdir a
+try:sseq:^\s*([;\|])] [;mkdir a
+	 matched:; captured:;
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [mkdir a
+	 matched:mkdir captured:mkdir
+mkdir  in path: /usr/bin/mkdir
+try:sseq:^\s*([;\|])] [ a
+try:e_group:^\s*("|'|`)] [ a
+try:s_group:^\s*("|'|`)] [ a
+try:args:^\s*([^\s;]+)] [ a
+	 matched: a captured:a
+end parsing: argsleft:]
+parse result: true
+ls true
+ls true
+echo true
+rm false
+mkdir true
+
+cmdsWhitelist="su, ls,echo,mkdir" build/fsmParser  'su - ec2-user -c "ls -alrt;ls"'
+
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [su - ec2-user -c "ls -alrt;ls"
+	 matched:su captured:su
+su  in path: /usr/bin/su
+try:sseq:^\s*([;\|])] [ - ec2-user -c "ls -alrt;ls"
+try:e_group:^\s*("|'|`)] [ - ec2-user -c "ls -alrt;ls"
+try:s_group:^\s*("|'|`)] [ - ec2-user -c "ls -alrt;ls"
+try:args:^\s*([^\s;]+)] [ - ec2-user -c "ls -alrt;ls"
+	 matched: - captured:-
+try:e_group:^\s*("|'|`)] [ ec2-user -c "ls -alrt;ls"
+try:s_group:^\s*("|'|`)] [ ec2-user -c "ls -alrt;ls"
+try:args:^\s*([^\s;]+)] [ ec2-user -c "ls -alrt;ls"
+	 matched: ec2-user captured:ec2-user
+try:e_group:^\s*("|'|`)] [ -c "ls -alrt;ls"
+try:s_group:^\s*("|'|`)] [ -c "ls -alrt;ls"
+try:args:^\s*([^\s;]+)] [ -c "ls -alrt;ls"
+	 matched: -c captured:-c
+try:e_group:^\s*("|'|`)] [ "ls -alrt;ls"
+	 matched: " captured:"
+try:s_group:^\s*("|'|`)] [ "ls -alrt;ls"
+	 matched: " captured:"
+try default:start:] [ls -alrt;ls"
+	 matched: captured:
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [ls -alrt;ls"
+	 matched:ls captured:ls
+ls  in path: /usr/bin/ls
+try:sseq:^\s*([;\|])] [ -alrt;ls"
+try:e_group:^\s*("|'|`)] [ -alrt;ls"
+try:s_group:^\s*("|'|`)] [ -alrt;ls"
+try:args:^\s*([^\s;]+)] [ -alrt;ls"
+	 matched: -alrt captured:-alrt
+try:e_group:^\s*("|'|`)] [;ls"
+try:s_group:^\s*("|'|`)] [;ls"
+try:args:^\s*([^\s;]+)] [;ls"
+try:sseq:^\s*([;\|])] [;ls"
+	 matched:; captured:;
+try:exec:^\s*([A-Za-z0-9_\-\+\.]+)] [ls"
+	 matched:ls captured:ls
+ls  in path: /usr/bin/ls
+try:sseq:^\s*([;\|])] ["
+try:e_group:^\s*("|'|`)] ["
+	 matched:" captured:"
+end parsing: e_groupleft:]
+parse result: true
+su true
+ls true
+ls true
+
