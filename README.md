@@ -5,4 +5,5 @@ A place to put algorithm problems and solutions. Not only Leetcode, but also oth
  * [jobSched](https://leetcode.com/problems/maximum-profit-in-job-scheduling/description/)
  * [nextPermutation](https://leetcode.com/problems/next-permutation/description/)
  * parseCmdlineExecWhitelisted: parser for commandlines: rejecting execution based on whitelisted "commands"
+ * [russianDollEnvelopes](https://leetcode.com/problems/russian-doll-envelopes/)
 
