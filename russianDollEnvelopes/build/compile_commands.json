@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/razvan/Projects/Leetcode-Problems/russianDollEnvelopes/build",
+  "command": "/usr/bin/g++-9    -g   -std=gnu++2a -o CMakeFiles/russianDollEnvelopes.dir/main.cpp.o -c /home/razvan/Projects/Leetcode-Problems/russianDollEnvelopes/main.cpp",
+  "file": "/home/razvan/Projects/Leetcode-Problems/russianDollEnvelopes/main.cpp"
+}
+]
