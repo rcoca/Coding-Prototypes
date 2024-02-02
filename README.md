@@ -4,5 +4,5 @@ A place to put algorithm problems and solutions. Not only Leetcode, but also oth
  * [evalRPN](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
  * [jobSched](https://leetcode.com/problems/maximum-profit-in-job-scheduling/description/)
  * [nextPermutation](https://leetcode.com/problems/next-permutation/description/)
- * parseCmdlineExecWhitelisted: parser for commandlines: rejecting execution based on whitelist
+ * parseCmdlineExecWhitelisted: parser for commandlines: rejecting execution based on whitelisted "commands"
 
