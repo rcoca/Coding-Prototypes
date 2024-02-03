@@ -4,6 +4,7 @@
 #include <memory>
 #include <iostream>
 #include <cassert>
+#include <optional>
 
 using namespace std;
 
@@ -17,20 +18,19 @@ int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& pro
         jobs[startTime[i]].push_back({ endTime[i], profit[i] });
     }    
     int max_profit = 0;
-    tuple<int,int,int,int> selected{0,0,0,0};
+    
     for (auto it = rbegin(times); it != rend(times); ++it) {
-        bool bested=false;        
+        optional<tuple<int,int,int,int>> selected;
         for (auto job : jobs[it->first]) {
             auto tmit = times.lower_bound(job.first);
             int current_profit = (tmit == end(times) ? 0 : tmit->second) + job.second;
             if (current_profit > max_profit) {
                 max_profit = current_profit;
                 selected = {it->first,job.first,job.second,max_profit}; // Store the end time of the selected job
-                bested = true; //and mark profit upgrade found
             }            
         }
-        if(bested)
-            selected_jobs.push_back(selected);
+        if(selected.has_value())
+            selected_jobs.push_back(selected.value());
         it->second = max_profit;        
     }
     
