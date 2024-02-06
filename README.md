@@ -6,4 +6,5 @@ A place to put algorithm problems and solutions. Not only Leetcode, but also oth
  * [nextPermutation](https://leetcode.com/problems/next-permutation/description/)
  * parseCmdlineExecWhitelisted: parser for commandlines: rejecting execution based on whitelisted "commands"
  * [russianDollEnvelopes](https://leetcode.com/problems/russian-doll-envelopes/)
+ * [evenValuedGrandParent](https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/)
 
