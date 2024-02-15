@@ -1,6 +1,7 @@
 #include <vector>
 #include <cassert>
 
+#include "gtest/gtest.h"
 
 using namespace std;
 
@@ -34,19 +35,17 @@ public:
     }
 };
 
-
-int main()
+TEST(traprainwater,tests)
 {
     Solution solver;
     {
         vector<int> heights = {0,1,0,2,1,0,1,3,2,1,2,1};
         int traps = 6;
-        assert(solver.trap(heights)==traps);
+        EXPECT_EQ(solver.trap(heights),traps);
     }
     {
         vector<int> heights = {4,2,0,3,2,5};
         int traps = 9;
-        assert(solver.trap(heights)==traps);
+        EXPECT_EQ(solver.trap(heights),traps);
     }
-    return 0;
 }
