@@ -1,0 +1,49 @@
+classes
+{
+    buying:   low, med, high, vhigh;
+    maint:    low, med, high, vhigh;
+    doors:    2, 3, 4, 5more;
+    persons:  2, 4, more;
+    lug_boot: small, med, big;
+    safety:   low, med, high;
+    decision: unacc, acc, good, vgood;
+}
+
+
+
+rules big
+{
+    inputs:buying,maint,doors,persons,lug_boot,safety;
+    outputs:decision_b;
+    dense:true;
+
+    big_car     :-  2 of {doors,persons,lug_boot,safety};
+    high_price  :-  2 of {buying,maint,~safety,persons};
+    emerged_b   :-  and(buying,~maint,~persons,~safety);
+    decision_b  :-  2 of {high_price,big_car,emerged_b};
+
+}
+rules small
+{
+    inputs:buying,maint,doors,persons,lug_boot,safety;
+    outputs:decision_s;
+    dense:true;
+
+    small_car   :-  2 of {~persons,~lug_boot,~doors};
+    low_price   :-  2 of {~buying,~maint,safety,persons};
+    emerged_s   :-  and(~buying,maint,persons,~safety);
+    decision_s  :-  2 of {low_price,small_car,emerged_s};
+
+}
+
+rules aggregate
+{
+    inputs:buying,maint,doors,persons,lug_boot,safety;
+    outputs:decision;
+    dense:false;
+    xtra        :-  and(decision_s,decision_b);
+    decision    :-  xtra;
+
+}
+
+small,big,aggregate;
