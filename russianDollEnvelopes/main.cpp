@@ -1,7 +1,7 @@
 #include <vector>
 #include <cassert>
 #include <algorithm>
-
+#include "gtest/gtest.h"
 using namespace std;
 
 class Solution {
@@ -28,18 +28,16 @@ public:
     }
 };
 
-int main()
+TEST(test_solution,tests)
 {
     Solution solver;
     vector<vector<int>> input;
     int result;
     input = {{5,4},{6,4},{6,7},{2,3}};
     result = 3;
-    assert(solver.maxEnvelopes(input)==result);
+    EXPECT_EQ(solver.maxEnvelopes(input),result);
 
     input = {{1,1},{1,1},{1,1}};
     result = 1;
-    assert(solver.maxEnvelopes(input)==result);
-
-    return 0;
+    EXPECT_EQ(solver.maxEnvelopes(input),result);
 }
