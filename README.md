@@ -9,4 +9,5 @@ A place to put algorithm problems and solutions. Not only Leetcode, but also oth
  * [evenValuedGrandParent](https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/)
  * [groupAnagrams](https://leetcode.com/problems/group-anagrams)
  * [trapRainWater](https://leetcode.com/problems/trapping-rain-water/)
+ * rulesLang: a parser for a rules language - based on boost::spirit::qi. used to compile to neural nets
 
