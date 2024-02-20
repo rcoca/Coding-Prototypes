@@ -1,9 +1,10 @@
-# A toy key value DB
+# A toy key-value DB
 
 1. Data
-Data is stored as file name=key, file data=value
-* keys are 255 bytes length <= because NAME_MAX is 255
-* value is unlimited <= limited by file size
+
+* Data is stored as file name=key, file data=value
+    * keys are 255 bytes length <= because NAME_MAX is 255
+    * value is unlimited <= limited by file size
 2. API
 * Data is manipulated using http-based REST API 
     * insert/update a single key/value pair <= write a file to the disk
@@ -11,7 +12,7 @@ Data is stored as file name=key, file data=value
     * list the keys <= returning the full directory listing
     * delete a key <= delete file
 3. Caching
-* of newly written data 
+* of newly written data <= vfs cache
 * of keys [inode/direntry cache], of values
 * size of the cache is configurable via sysctl
     * vm.vfs_cache_pressure = 50 <= kernel will prefer inode and dentry caches over the page cache
