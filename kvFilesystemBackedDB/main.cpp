@@ -103,6 +103,12 @@ bool DBBackend::remove(const DBBackend::key_type &key)
     // if(within DB dir)
     return std::filesystem::remove({key});
 }
+std::string sanitize(std::string key)
+{
+    std::transform(key.begin(), key.end(), key.begin(), [](const char c)
+                   { return (c != '/') ? c : '_'; });
+    return key;
+}
 
 int main(int argc, char *argv[])
 {
@@ -158,6 +164,7 @@ int main(int argc, char *argv[])
             {
         if (req.has_param("key")) {
             auto key = req.get_param_value("key");
+            key=sanitize(key);
             auto blob=DB.find(key);
             res.set_content(blob.c_str(),"text/plain");
             res.status = httplib::StatusCode::OK_200;
@@ -188,25 +195,26 @@ int main(int argc, char *argv[])
         {
             auto key = req.get_param_value("key");
             auto val = req.get_param_value("value");
+            key=sanitize(key);
             DB.insert(key,val);
             res.status = httplib::StatusCode::OK_200;
         }        
         return res.status; });
     svr.Post("/remove", [&DB](const auto &req, auto &res)
              {
-        res.status = httplib::StatusCode::BadRequest_400;
-        if (req.has_param("key")) 
-        {
-            auto key = req.get_param_value("key");            
-            if(DB.remove(key))            
-                res.status = httplib::StatusCode::OK_200;            
-        }        
-        return res.status; });
+                res.status = httplib::StatusCode::BadRequest_400;
+                if (req.has_param("key")) 
+                {                    
+                    auto key = req.get_param_value("key");
+                    if(DB.remove(sanitize(key)))
+                        res.status = httplib::StatusCode::OK_200;            
+                }        
+                return res.status; });
     svr.Get("/stop", [&svr](const httplib::Request &req, httplib::Response &res)
             {
-        res.status = httplib::StatusCode::OK_200;
-        svr.stop();
-        return res.status; });
+                res.status = httplib::StatusCode::OK_200;
+                svr.stop();
+                return res.status; });
 
     svr.listen("0.0.0.0", 8080);
     return 0;
