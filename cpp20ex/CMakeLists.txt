@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 set(PROJECT cpp20ex)
 project(${PROJECT} LANGUAGES CXX)
 
-#since we're using zip view. maight need cmake upgrade
+#since we're using zip view. might need cmake upgrade
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

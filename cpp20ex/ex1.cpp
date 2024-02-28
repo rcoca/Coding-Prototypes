@@ -22,10 +22,10 @@ std::ostream & print_tuple_impl(std::ostream& os, std::tuple<Ts...> tuple, std::
 {
     static_assert(sizeof...(Is)==sizeof...(Ts),"Indices must have same number of elements as tuple types!");
     static_assert(sizeof...(Ts)>0, "Cannot insert empty tuple into stream.");
-    auto last = sizeof...(Ts) - 1 ; // assuming index sequence 0,...,N-1
+    auto last = sizeof...(Ts) ; // assuming index sequence 0,...,N-1
 
     os<<"(";
-    ((os << std::get<Is>(tuple) << (Is != last ? ", " : "")),...);
+    ((os << std::get<Is>(tuple) << ( (Is != last -1) ? ", " : "")),...);
     return (os<<")");
 }
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     std::cout<<std::endl;
 
     //clang-17 no support for zip view, clang-18 either
-    //for(auto elem: std::views::zip(v,u))
+    //for(auto elem: std::views::zip(v,u))    
     for(int i=0;i<u.size();++i)
     {
         std::cout<<std::tuple(u[i],v[i])<<' ';
