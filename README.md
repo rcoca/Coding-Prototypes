@@ -13,7 +13,9 @@ A place to put algorithm problems and solutions. Not only Leetcode, but also oth
  * kvFilesystemBackedDB: a filesystem backed db. It will cache through filesystem cache.
  * cpp20ex: playing with C++20 and upper features
 
-For the cases where absolutely needed - here's the repository License:
+-----
+
+For the cases where absolutely needed - here's the repository **License**:
 
 Copyright 2017 Razvan Coca
 
